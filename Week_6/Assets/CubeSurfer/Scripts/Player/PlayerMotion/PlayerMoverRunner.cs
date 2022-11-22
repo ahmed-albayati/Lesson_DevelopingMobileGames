@@ -4,7 +4,12 @@ using UnityEngine;
 public class PlayerMoverRunner : MonoBehaviour
 {
     public float Velocity;
-
+    /*
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("OnTriggerEnter");
+    }
+    */
     private void FixedUpdate()
     {
         transform.position += new Vector3(0F, 0F, 1F) * Time.deltaTime * Velocity;
