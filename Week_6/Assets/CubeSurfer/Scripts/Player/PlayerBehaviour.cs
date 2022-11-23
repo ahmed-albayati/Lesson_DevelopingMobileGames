@@ -6,7 +6,7 @@ public class PlayerBehaviour : MonoBehaviour
 {
 
     public Animator animatorOfPlayer;
-
+    public float reset_delay = 1.0f;
     public PlayerMoverRunner playerMoverRunner;
 
     private void Awake()
@@ -32,11 +32,18 @@ public class PlayerBehaviour : MonoBehaviour
     public void VictoryAnimation()
     {
         animatorOfPlayer.SetTrigger("Victory");
+
     }
 
     public void FailAnimation()
     {
         animatorOfPlayer.SetTrigger("Fail");
+        Invoke("Reset", reset_delay);
+    }
+    void Reset()
+    {
+        Time.timeScale = 0.2f;
+        Application.LoadLevel(Application.loadedLevel);
     }
 
     public void StopPlayer()
