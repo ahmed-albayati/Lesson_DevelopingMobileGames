@@ -42,7 +42,7 @@ public class PlayerBehaviour : MonoBehaviour
     }
     void Reset()
     {
-        Time.timeScale = 0.2f;
+        Time.timeScale = 1.0f;
         Application.LoadLevel(Application.loadedLevel);
     }
 
