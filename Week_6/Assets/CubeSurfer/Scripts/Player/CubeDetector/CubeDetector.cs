@@ -2,6 +2,7 @@
 using UnityEngine;
 
 public class CubeDetector : MonoBehaviour
+
 {
 
     private void OnCollisionEnter(Collision collision)
