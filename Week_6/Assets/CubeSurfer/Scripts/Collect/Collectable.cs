@@ -13,7 +13,7 @@ public class Collectable : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player")) {
-            Debug.Log(" OnTriggerEnter Collectable");
+           // Debug.Log(" OnTriggerEnter Collectable");
             OnCollect?.Invoke();
             Destroy(gameObject);
         }
