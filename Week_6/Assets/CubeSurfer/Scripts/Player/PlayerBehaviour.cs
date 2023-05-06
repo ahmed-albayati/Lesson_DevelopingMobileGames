@@ -31,6 +31,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void VictoryAnimation()
     {
+        Debug.Log("animation");
         animatorOfPlayer.SetTrigger("Victory");
 
     }

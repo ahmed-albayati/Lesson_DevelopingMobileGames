@@ -1,6 +1,7 @@
 using DG.Tweening;
 
 using System.Collections.Generic;
+using System.Collections;
 
 using UnityEngine;
 
@@ -8,12 +9,16 @@ public class PlayerCubeManager : MonoBehaviour
 {
     private float stepLength = 0.043f;
     private float groundYValue = -0.0213f;
+    public float delay = 2.3f;
+    public AudioClip gameOverSound;
+    private AudioSource audioSource;
 
     public List<CubeBehaviour> listOfCubeBehaviour = new List<CubeBehaviour>();
 
     private void Awake()
     {
         Singleton();
+        audioSource = GetComponent<AudioSource>();
     }
 
     #region Singleton
@@ -30,6 +35,10 @@ public class PlayerCubeManager : MonoBehaviour
     }
 
     #endregion
+    private System.Collections.IEnumerator AnimationDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+    }
 
     public void GetCube(CubeBehaviour cubeBehaviour)
     {
@@ -64,6 +73,11 @@ public class PlayerCubeManager : MonoBehaviour
 
             PlayerBehaviour.Instance.FailAnimation();
             PlayerBehaviour.Instance.StopPlayer();
+            audioSource.PlayOneShot(gameOverSound);
+            StartCoroutine(AnimationDelay(delay));
+
+            //FailSC failScript = GetComponent<FailSC>();
+            //failScript.ShowFailPanel(); // Call ShowFailPanel() method
 
             var playerTransform2 = PlayerBehaviour.Instance.transform;
             Vector3 groundTarget = new Vector3(0f, -0.016f, -0.14f);
