@@ -1,5 +1,5 @@
 using DG.Tweening;
-
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
@@ -8,10 +8,12 @@ public class PlayerBehaviour : MonoBehaviour
     public Animator animatorOfPlayer;
     public float reset_delay = 1.0f;
     public PlayerMoverRunner playerMoverRunner;
+    private Interstitial interstitial;
 
     private void Awake()
     {
         Singleton();
+        interstitial = GameObject.Find("Interstitial").GetComponent<Interstitial>();
     }
 
     #region Singleton
@@ -39,12 +41,28 @@ public class PlayerBehaviour : MonoBehaviour
     public void FailAnimation()
     {
         animatorOfPlayer.SetTrigger("Fail");
+        ShowInterstitialAd();
         Invoke("Reset", reset_delay);
     }
+
+    private void ShowInterstitialAd()
+    {
+        if (interstitial != null)
+        {
+            Debug.Log("Attempting to show interstitial ad.");
+            interstitial.ShowAd();
+        }
+        else
+        {
+            Debug.LogError("Interstitial ad script not found.");
+        }
+    }
+
+
     void Reset()
     {
         Time.timeScale = 1.0f;
-        Application.LoadLevel(Application.loadedLevel);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void StopPlayer()

@@ -5,16 +5,11 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/CubeSurfer/Scenes/MAIN MENU.unity
     guid: 3e2821a76d57a4d4297630535687b284
   - enabled: 1
     path: Assets/CubeSurfer/Scenes/new scene 1.unity
     guid: 2b534d4e3f8178e4d83e8010405823aa
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 3f5216288ca367946a866d3d9d7682b3, type: 2}

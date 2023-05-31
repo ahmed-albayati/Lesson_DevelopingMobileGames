@@ -13,8 +13,23 @@ public class ExitButton : MonoBehaviour
 
     void ExitGame()
     {
-        // Quit the application
+        // Print log to console
         Debug.Log("exit");
-        Application.Quit();
+
+#if UNITY_EDITOR
+        // If in the Unity editor, stop playing the game
+        UnityEditor.EditorApplication.isPlaying = false;
+#elif UNITY_ANDROID
+    // If running on Android, kill the app
+    AndroidJavaObject activity = 
+      new AndroidJavaClass("com.unity3d.player.UnityPlayer")
+      .GetStatic<AndroidJavaObject>("currentActivity");
+    activity.Call<bool>("finish");
+#else
+    // If on any other platform, quit the application
+    Application.Quit();
+#endif
     }
+
+
 }
